@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_URI)
         await User.create({
 
             name: "Admin User",
-            email: "admin@test.com",
+            email: "Neel@test.com",
             password,
             role: "admin"
         });
