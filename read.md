@@ -2,75 +2,85 @@
 
 ## Overview
 
-The backend of the Visitor Pass Management System is developed using Node.js, Express.js, and MongoDB.
+This is the backend API for the Visitor Pass Management System developed using Node.js, Express.js, and MongoDB.
 
-It provides REST APIs for authentication, visitor management, appointment scheduling, pass generation, QR code generation, PDF badge creation, visitor logs, dashboard analytics, and report exports.
+The backend provides REST APIs for:
+
+* Authentication
+* Visitor Management
+* Appointment Management
+* Pass Generation
+* QR Code Generation
+* PDF Badge Generation
+* Logs
+* Reports
+* Analytics
+
+---
+
+## Live API
+
+https://v-pms-backend.onrender.com/
+
+---
+
+## Technologies Used
+
+* Node.js
+* Express.js
+* MongoDB
+* Mongoose
+* JWT
+* bcryptjs
+* Nodemailer
+* QRCode
+* PDFKit
+* json2csv
 
 ---
 
 ## Features
 
-### Authentication & Authorization
+### Authentication
 
+* Register User
+* Login User
 * JWT Authentication
-* Password Hashing using bcrypt
-* Role-Based Access Control
+* Role Authorization
 
-Supported Roles:
+### Visitor APIs
 
-* Admin
-* Security
-* Employee
-* Visitor
+* Create Visitor
+* Get Visitors
+* Update Visitor
+* Delete Visitor
 
----
-
-### Visitor Management
-
-* Add Visitor
-* View Visitors
-* Store Visitor Information
-* Upload Visitor Photo
-
----
-
-### Appointment Management
+### Appointment APIs
 
 * Create Appointment
-* Assign Host
-* Approve Appointment
-* Reject Appointment
+* Update Status
 * View Appointments
 
----
+### Pass APIs
 
-### Pass Management
-
-* Generate QR-Based Pass
-* Store Pass Information
+* Generate Visitor Pass
+* Generate QR Code
 * Download PDF Badge
-* Pass Validation
 
----
+### Logs APIs
 
-### Check-In / Check-Out
+* Check-In Visitor
+* Check-Out Visitor
+* View Logs
 
-* Visitor Entry Logs
-* Visitor Exit Logs
-* Visit Tracking
-* Log History
+### Reports APIs
 
----
+* Export Visitor Report
+* Export Appointment Report
+* Export Pass Report
+* Export Log Report
 
-### Notifications
-
-* Email Notifications
-* Appointment Approval Notification
-* Pass Generation Notification
-
----
-
-### Dashboard Analytics
+### Analytics APIs
 
 * Total Visitors
 * Total Appointments
@@ -79,84 +89,71 @@ Supported Roles:
 
 ---
 
-### Reports Export
-
-* Visitors CSV
-* Appointments CSV
-* Passes CSV
-* Logs CSV
-
----
-
-## Technology Stack
-
-### Backend
-
-* Node.js
-* Express.js
-
-### Database
-
-* MongoDB Atlas
-* Mongoose
-
-### Authentication
-
-* JWT
-* bcryptjs
-
-### Additional Packages
-
-* qrcode
-* pdfkit
-* nodemailer
-* multer
-* json2csv
-* dotenv
-
----
-
 ## Installation
 
 ### Clone Repository
 
-git clone <repository-url>
+```bash
+git clone https://github.com/workneel2111/V_PMS_backend.git
+```
 
-### Navigate to Backend
+### Navigate
 
-cd backend
+```bash
+cd V_PMS_backend
+```
 
-### Install Dependencies
+### Install Packages
 
+```bash
 npm install
+```
 
 ---
 
 ## Environment Variables
 
-Create a .env file:
+Create:
 
+```env
+.env
+```
+
+Add:
+
+```env
 PORT=5000
 
 MONGO_URI=your_mongodb_connection_string
 
-JWT_SECRET=your_secret_key
+JWT_SECRET=mysecretkey
 
-EMAIL_USER=your_email
+EMAIL_USER=your_email@gmail.com
 
-EMAIL_PASS=your_email_password
+EMAIL_PASS=your_app_password
+```
 
 ---
 
-## Run Development Server
+## Run Server
 
+Development:
+
+```bash
 npm run dev
+```
 
----
+Production:
 
-## Run Production Server
-
+```bash
 npm start
+```
+
+Server runs on:
+
+```text
+http://localhost:5000
+```
 
 ---
 
@@ -164,143 +161,105 @@ npm start
 
 Run:
 
+```bash
 npm run seed
+```
 
-Demo Accounts:
+This creates:
 
-Admin:
+### Admin
 
-Email: [admin@test.com](mailto:admin@test.com)
+Email:
+[neel@test.com](mailto:neel@test.com)
 
-Password: 123456
+Password:
+123456
 
-Security:
+### Security
 
-Email: [security@test.com](mailto:security@test.com)
+Email:
+[security@test.com](mailto:security@test.com)
 
-Password: 123456
+Password:
+123456
 
-Employee:
+### Employee
 
-Email: [employee@test.com](mailto:employee@test.com)
+Email:
+[employee@test.com](mailto:employee@test.com)
 
-Password: 123456
+Password:
+123456
 
----
+### Visitor
 
-## API Endpoints
+Email:
+[visitor@test.com](mailto:visitor@test.com)
 
-### Authentication
-
-POST /api/auth/register
-
-POST /api/auth/login
-
-GET /api/auth/users
-
----
-
-### Visitors
-
-POST /api/visitors
-
-GET /api/visitors
+Password:
+123456
 
 ---
 
-### Appointments
+## API Routes
 
-POST /api/appointments
+Authentication
 
-GET /api/appointments
+```text
+/api/auth
+```
 
-PUT /api/appointments/status/:id
+Visitors
 
----
+```text
+/api/visitors
+```
 
-### Passes
+Appointments
 
-POST /api/passes/generate/:id
+```text
+/api/appointments
+```
 
-GET /api/passes
+Passes
 
-GET /api/passes/pdf/:id
+```text
+/api/passes
+```
 
----
+Logs
 
-### Logs
+```text
+/api/logs
+```
 
-POST /api/logs/checkin
+Reports
 
-POST /api/logs/checkout
+```text
+/api/reports
+```
 
-GET /api/logs
+Analytics
 
----
-
-### Dashboard
-
-GET /api/dashboard
-
----
-
-### Reports
-
-GET /api/reports/visitors
-
-GET /api/reports/appointments
-
-GET /api/reports/passes
-
-GET /api/reports/logs
-
----
-
-## Project Structure
-
-backend
-
-├── controllers
-
-├── middleware
-
-├── models
-
-├── routes
-
-├── uploads
-
-├── utils
-
-├── seed.js
-
-├── server.js
-
-├── package.json
-
-└── README.md
+```text
+/api/dashboard
+```
 
 ---
 
 ## Deployment
 
-### Render
+Backend Hosted On:
 
-Root Directory:
+Render
 
-backend
+Frontend Hosted On:
 
-Build Command:
-
-npm install
-
-Start Command:
-
-npm start
+Netlify
 
 ---
 
-## Developed By
+## Author
 
 Neel Patel
 
